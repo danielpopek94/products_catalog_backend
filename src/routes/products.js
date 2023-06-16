@@ -13,11 +13,12 @@ router.get('/:productId?', async (req, res) => {
       const phone = phones.find(item => item.id === productId);
 
       if (!phone) {
-        res.status(500).json({ error: 'Wrong id! Use number from 1 to 71' });
+        return res.status(500).json({ error: 'Wrong id! Use number from 1 to 71' });
       }
 
       const selectedPhone = await getFileData(`public/assets/phones/${phone.phoneId}.json`);
-      res.json(selectedPhone);
+
+      return res.json(selectedPhone);
     }
 
     res.json(phones);
