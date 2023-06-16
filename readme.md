@@ -2,11 +2,6 @@
 
 This is a Express.js server with a product list. It provides an API to load products with photos.
 
-## Features
-
-- Fetch all phones based on the `/products` endpoint.
-- Load specific info on a `/products/id` endpoint. For example `/products/1`. U can use only numbers from 1 to 71.
-- Automatic server refresh with Nodemon.
 
 ## Technologies Used
 
@@ -87,7 +82,11 @@ Load specific info on a `/products/id` endpoint.
 
 Example `/products/1`.
 
-U can use only numbers from 1 to 71. Otherwise you get error.
+Example `/products/apple-iphone-7-32gb-black`.
+
+U can use only numbers from 1 to 71 or slug ex. `phoneId` property (from product body).
+
+Otherwise you get error.
 
 Response body example:
 
