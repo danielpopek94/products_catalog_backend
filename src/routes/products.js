@@ -10,7 +10,13 @@ router.get('/:productId?', async (req, res) => {
     const productId = req.params.productId;
 
     if (productId) {
-      const phone = phones.find(item => item.id === productId);
+      const phone = phones.find(item => {
+        if (Number(productId) === NaN) {
+          return item.phoneId === productId;
+        } else {
+          return item.id === productId;
+        }
+      });
 
       if (!phone) {
         return res.status(500).json({ error: 'Wrong id! Use number from 1 to 71' });
