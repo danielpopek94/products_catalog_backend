@@ -1,8 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 require('dotenv').config();
 const getFileData = require('../utils/getFileData')
 
+router.use(bodyParser.json());
 
 router.get('/:productId?', async (req, res) => {
   try {
@@ -30,6 +32,27 @@ router.get('/:productId?', async (req, res) => {
     res.json(phones);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
+    const order = req.body;
+
+    let list = '';
+
+    order.forEach((item, index) => {
+      list += `${item.name} /x${item.quantity}`
+
+      if (index < order.length - 1) {
+        list += ' | '
+      }
+    });
+
+
+    return res.status(200).json({ success: 'Order received: ' + list });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
 });
 
